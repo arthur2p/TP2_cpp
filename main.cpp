@@ -19,7 +19,7 @@ int main(int argc, char const* argv[]) {
 	std::cout << a.id() << " " << a.name() << " " << a.city() << std::endl;
 	Chambre room1(1, "Simple", 50);
 	a.addChambre(room1);
-	Chambre room2 (1, "Double", 100);
+	Chambre room2 (2, "Double", 100);
 	a.addChambre(room2);
 	a.DisplayAllChambre();
 	Hotel b(2, "Motel", "Lyon");
@@ -29,6 +29,9 @@ int main(int argc, char const* argv[]) {
 	Client client(1, "Arthure", "PATAILLE");
 	client.updateFirstname("Arthur");
 	std::cout << client.firstname() << " " << client.id() << std::endl;
+	Date date(2023, 1, 11);
+	Reservation reservation(date, 5, a, 1, client);
+	std::cout << reservation.clientId() << " " << reservation.hotelId() << " " << reservation.totalprice() << std::endl;
 
 
 
