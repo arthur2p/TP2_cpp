@@ -1,10 +1,10 @@
 #include "Client.h"
 
-Client::Client(std::string id, std::string name, std::string firstname) :_id(id), _name(name), _firstname(firstname){
+Client::Client(int id, std::string name, std::string firstname) :_id(id), _name(name), _firstname(firstname){
 
 }
 
-std::string Client::id() const {
+int Client::id() const {
 	return _id;
 }
 
