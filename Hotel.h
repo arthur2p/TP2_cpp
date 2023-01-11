@@ -10,15 +10,13 @@ public:
 	int id() const;
 	std::string name() const;
 	std::string city() const;
+	std::vector<Chambre> room() const;
 	void addChambre(Chambre chambre);
 	void removeChambre(int position);
-	void DisplayChambre();
+	void DisplayAllChambre();
 private:
 	int _id;
 	std::string _name;
 	std::string _city;
 	std::vector<Chambre> _room;
 };
-
-
-

@@ -11,23 +11,25 @@
 #include "date.h"
 #include "Client.h"
 #include "Hotel.h"
+#include "Reservation.h"
 #include <iostream>
 
 int main(int argc, char const* argv[]) {
 	Hotel a (1, "Ibis", "Dijon");
 	std::cout << a.id() << " " << a.name() << " " << a.city() << std::endl;
-	Chambre room1(1, "simple", 50);
+	Chambre room1(1, "Simple", 50);
 	a.addChambre(room1);
-	Chambre room2 (2, "double", 100);
+	Chambre room2 (1, "Double", 100);
 	a.addChambre(room2);
-	a.DisplayChambre();
+	a.DisplayAllChambre();
 	Hotel b(2, "Motel", "Lyon");
-	b.DisplayChambre();
+	b.DisplayAllChambre();
 	a.removeChambre(1);
-	a.DisplayChambre();
+	a.DisplayAllChambre();
 	Client client(1, "Arthure", "PATAILLE");
 	client.updateFirstname("Arthur");
 	std::cout << client.firstname() << " " << client.id() << std::endl;
+
 
 
 	return 0;
