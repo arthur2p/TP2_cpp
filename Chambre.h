@@ -13,13 +13,13 @@ public:
 	bool reserved() const;
 	void updatePrice(int price);
 	void updateReserved(bool status);
+	friend std::ostream& operator<<(std::ostream& os, const Chambre& room);
 private:
 	int _number;
-	enum _types { Simple, Double, Suite };
 	std::string _type;
 	int _price;
 	bool _reserved = false;
 };
 
-
+//Helper function
 bool isType(std::string type);

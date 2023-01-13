@@ -1,5 +1,5 @@
 #include "Reservation.h"
-
+//Constructeur
 Reservation::Reservation(Date& firstDate, int numberNights, Hotel& hotel, int chambreId, Client& client) : 
     _firstDate(firstDate), _numberOfNights(numberNights), _hotelId(hotel.id()), _chambreId(chambreId), _clientId(client.id()), _totalPrice(calculprice(hotel, chambreId))
 {
@@ -11,6 +11,7 @@ Reservation::Reservation(Date& firstDate, int numberNights, Hotel& hotel, int ch
     assert(statusBisBis && "Chambre is not free");
 }
 
+//Getters
 Date Reservation::firstDate() const {
     return _firstDate;
 }
@@ -35,6 +36,7 @@ int Reservation::totalprice() const {
     return _totalPrice;
 }
 
+//Setters
 void Reservation::updateDate(int day, int month, int year) {
     _firstDate.updateDay(day);
     _firstDate.updateMonth(month);
@@ -45,12 +47,12 @@ void Reservation::updateNumberOfNights(int newNumber) {
     _numberOfNights = newNumber;
 }
 
-
+//Calcul du prix total du séjour
 int Reservation::calculprice(Hotel hotel, int chambreId) {
     return hotel.room().at(chambreId-1).price() * _numberOfNights;
 }
 
-
+//Helper functions
 bool isNumberNights(int number) {
     if (number > 0)
         return true;

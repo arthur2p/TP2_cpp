@@ -10,6 +10,7 @@ public:
 	std::string firstname() const;
 	void updateName(std::string name);
 	void updateFirstname(std::string firstname);
+	friend std::ostream& operator<<(std::ostream& os, const Client& client);
 
 private:
 	int _id;
