@@ -25,6 +25,13 @@ public:
 	Date operator+(int days) const;
 	Date operator-(int days) const;
 	int operator-(const Date& date) const;
+	
+	bool operator>=(const Date& date) const;
+	bool operator<=(const Date& date) const;
+	bool operator>(const Date& date) const;
+	bool operator<(const Date& date) const;
+	bool operator==(const Date& date) const;
+	
 private:
 	int _year;
 	int _month;

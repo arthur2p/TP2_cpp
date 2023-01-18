@@ -108,11 +108,45 @@ int Date::operator-(const Date& date) const {
     return dayOfYear(*this) - dayOfYear(date) - days;
 }
 
-/**
- *
- * Helper functions
- *
-*/
+bool Date::operator>=(const Date& date) const {
+    if (_year < date.year()) return false;
+    if (_year > date.year()) return true;
+    if (_month < date.month()) return false;
+    if (_month > date.month()) return true;
+    return _day >= date.day();
+}
+
+bool Date::operator<=(const Date& date) const {
+    if (_year > date.year()) return false;
+    if (_year < date.year()) return true;
+    if (_month > date.month()) return false;
+    if (_month < date.month()) return true;
+    return _day <= date.day();
+}
+
+bool Date::operator>(const Date& date) const {
+    if (_year < date.year()) return false;
+    if (_year > date.year()) return true;
+    if (_month < date.month()) return false;
+    if (_month > date.month()) return true;
+    return _day > date.day();
+}
+
+bool Date::operator<(const Date& date) const {
+    if (_year > date.year()) return false;
+    if (_year < date.year()) return true;
+    if (_month > date.month()) return false;
+    if (_month < date.month()) return true;
+    return _day < date.day();
+}
+
+bool Date::operator==(const Date& date) const {
+    return _year == date.year() && _month == date.month() && _day == date.day();
+}
+
+
+// Helper functions
+
 
 bool isDate(int year, int month, int day) {
     if ((year < 0 || year > 2100)) return false;
