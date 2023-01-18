@@ -1,7 +1,10 @@
 #pragma once
 #include <iostream>
+#include "Date.h"
+#include <vector>
 
-enum class RoomType { Simple, Double, Suite };
+enum class RoomType { Simple, Double, Suite }; 
+
 class Room
 {
 public:
@@ -11,10 +14,10 @@ public:
 	RoomType type() const;
 	int bed_amount() const;
 	int price() const;
-	bool reserved() const;
+	bool reserved(Date begin_date, int night_number) const;
 	
-	bool addReservation(int bed_taken);
-	bool removeReservation();
+	bool addReservation(Date begin_date, int night_number, int bed_taken);
+	bool removeReservation(Date begin_date);
 	friend std::ostream& operator<<(std::ostream& os, const Room& room);
 private:
 	int _number;
@@ -22,9 +25,9 @@ private:
 	RoomType _type;
 	int _price;
 	bool _reserved;
-	int _bed_taken;
-	
+	struct Reservation {
+		Date begin_date;
+		int night_number;
+	};
+	std::vector<Reservation> _reservations;
 };
-
-//Helper function
-bool isType(std::string type);

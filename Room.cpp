@@ -36,35 +36,28 @@ int Room::price() const {
 	return _price;
 }
 
-bool Room::reserved() const {
-	return _reserved;
-}
-
-//Setters
-bool Room::addReservation(int bed_taken) {
-	if (_reserved)
-		return false;
-	if (bed_taken <= 0 || bed_taken > _bed_amount)
-		return false;
-	_reserved = true;
-	_bed_taken = bed_taken;
-	return true;
-}
-
-bool Room::removeReservation() {
-	if (_reserved) {
-		_reserved = false;
-		return true;
-	}
+bool Room::reserved(Date begin_date, int night_number) const {
+	for (Reservation reservation : _reservations)
+		if (begin_date >= reservation.begin_date && begin_date < reservation.begin_date + reservation.night_number ||
+			begin_date + night_number > reservation.begin_date && begin_date + night_number <= reservation.begin_date + reservation.night_number)
+			return true;
 	return false;
 }
 
-//Helper function 
-bool isType(std::string type) {
-	if (type == "Simple" || type == "Double" || type == "Suite")
-		return true;
-	else
-		return false;
+bool Room::addReservation(Date begin_date, int night_number, int bed_taken) {
+	if (bed_taken < 1 || bed_taken > _bed_amount) throw std::string("Invalid bed amount");
+	if (night_number < 1) throw std::string("Invalid night number");
+	if (reserved(begin_date, night_number)) return false;
+
+	_reservations.push_back({ begin_date, night_number });
+	return true;
+
+}
+bool Room::removeReservation(Date begin_date) {
+	for (Reservation reservation : _reservations)
+		if (begin_date == reservation.begin_date)
+			_reservations.erase(_reservations.begin() + (&reservation - &_reservations.at(0)));
+	return false;
 }
 
 //Friend function
