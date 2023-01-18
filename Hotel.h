@@ -2,23 +2,23 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "Chambre.h"
+#include "Room.h"
 class Hotel
 {
 public:
-	Hotel(int id, std::string name, std::string city, std::vector<Chambre> room);
+	Hotel(int id, std::string name, std::string city, std::vector<Room> room);
 	Hotel(int id, std::string name, std::string city);
 	int id() const;
 	std::string name() const;
 	std::string city() const;
-	std::vector<Chambre> room() const;
-	void addChambre(Chambre chambre);
+	std::vector<Room> room() const;
+	void addChambre(Room chambre);
 	void removeChambre(int position);
-	void DisplayAllChambre();
+	void displayAllRoom();
 	friend std::ostream& operator<<(std::ostream& os, const Hotel& hotel);
 private:
 	int _id;
 	std::string _name;
 	std::string _city;
-	std::vector<Chambre> _room;
+	std::vector<Room> _room;
 };

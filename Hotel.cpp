@@ -1,6 +1,6 @@
 #include "Hotel.h"
 //Constructeur
-Hotel::Hotel(int id, std::string name, std::string city, std::vector<Chambre> room): _id(id), _name(name), _city(city), _room(room)
+Hotel::Hotel(int id, std::string name, std::string city, std::vector<Room> room): _id(id), _name(name), _city(city), _room(room)
 {
 
 }
@@ -23,19 +23,19 @@ std::string Hotel::city() const {
 	return _city;
 }
 
-std::vector<Chambre> Hotel::room() const {
+std::vector<Room> Hotel::room() const {
 	return _room;
 }
 
 //Ajout d'une chambre
-void Hotel::addChambre(Chambre chambre) {
+void Hotel::addChambre(Room room) {
 	if (_room.size() == 0)
-		_room.push_back(chambre);
+		_room.push_back(room);
 	for (int i = 0; i < _room.size(); i++) {
-		if (_room.at(i).number() == chambre.number())
+		if (_room.at(i).number() == room.number())
 			std::cout << "Le numero de la chambre existe deja !" << std::endl;
 		else
-			_room.push_back(chambre);
+			_room.push_back(room);
 
 	}
 }
@@ -49,10 +49,17 @@ void Hotel::removeChambre(int position) {
 }
 
 //Affichage de toutes les chambres
-void Hotel::DisplayAllChambre() {
+void Hotel::displayAllRoom() {
 	if (_room.size() != 0) {
 		for (int i = 0; i < _room.size(); i++) {
-			std::cout << "La chambre " << _room.at(i).number() << " de type " << _room.at(i).type() << " est au prix de " << _room.at(i).price() << " euros" << std::endl;
+			std::string room_type;
+			if (_room.at(i).type() == RoomType::Simple)
+				room_type = "Simple";
+			else if (_room.at(i).type() == RoomType::Double)
+				room_type = "Double";
+			else if (_room.at(i).type() == RoomType::Suite)
+				room_type = "Suite";
+			std::cout << "La chambre " << _room.at(i).number() << " de type " << room_type << " est au prix de " << _room.at(i).price() << " euros" << std::endl;
 		}
 	}
 	else

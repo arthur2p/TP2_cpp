@@ -12,6 +12,7 @@
 #include "Client.h"
 #include "Hotel.h"
 #include "Reservation.h"
+#include "Room.h"
 #include <iostream>
 
 int main(int argc, char const* argv[]) {
@@ -34,15 +35,15 @@ int main(int argc, char const* argv[]) {
 	std::cout << reservation.clientId() << " " << reservation.hotelId() << " " << reservation.totalprice() << std::endl;*/
 
 	//Ajout de d'un hotel avec 10 chambres
-	std::vector<Chambre> chambreHotel1;
+	std::vector<Room> chambreHotel1;
 	for (int i = 1; i < 4; i++) {
-		chambreHotel1.push_back(Chambre(i, "Simple", 100));
+		chambreHotel1.push_back(Room(i, RoomType::Simple, 1, 100));
 	}
 	for (int i = 4; i < 9; i++) {
-		chambreHotel1.push_back(Chambre(i, "Double", 125));
+		chambreHotel1.push_back(Room(i, RoomType::Double, 2, 125));
 	}
-	chambreHotel1.push_back(Chambre(9, "Suite", 210));
-	chambreHotel1.push_back(Chambre(10, "Suite", 210));
+	chambreHotel1.push_back(Room(9, RoomType::Suite, 2, 200));
+	chambreHotel1.push_back(Room(10, RoomType::Suite, 2, 210));
 	for (int i = 0; i < chambreHotel1.size(); i++) {
 		std::cout << chambreHotel1.at(i);
 	}
@@ -52,10 +53,10 @@ int main(int argc, char const* argv[]) {
 	//Création de clients
 	std::vector<Client> clientHotel1;
 	clientHotel1.push_back(Client(1, "PATAILLE", "Arthur"));
-	clientHotel1.push_back(Client(2, "ANZIFIE", "JKEFSJ"));
-	clientHotel1.push_back(Client(3, "AJNGJFNV", "DHKFBFSGJK"));
-	clientHotel1.push_back(Client(4, "EEJKVKF", "NKVBDKG"));
-	clientHotel1.push_back(Client(5, "FNVKBFDB", "DKLDFNVBKB"));
+	clientHotel1.push_back(Client(2, "BRAUN", "Gwendal"));
+	clientHotel1.push_back(Client(3, "FREUD", "Sigmond"));
+	clientHotel1.push_back(Client(4, "EULER", "Leonard"));
+	clientHotel1.push_back(Client(5, "STIVELL", "Alan"));
 
 	for (int i = 0; i < clientHotel1.size(); i++) {
 		std::cout << clientHotel1.at(i);
