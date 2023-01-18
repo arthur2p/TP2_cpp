@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 
 enum class RoomType { Simple, Double, Suite };
 class Room

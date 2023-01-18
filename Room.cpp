@@ -70,6 +70,13 @@ bool isType(std::string type) {
 //Friend function
 std::ostream& operator<<(std::ostream& os, const Room& room)
 {
-	os << "Chambre : Numero : " << room.number() << ", type : " << room.type() << ", prix : " << room.price() << std::endl;
+	std::string room_type;
+	if (room.type() == RoomType::Simple)
+		room_type = "Simple";
+	else if (room.type() == RoomType::Double)
+		room_type = "Double";
+	else if (room.type() == RoomType::Suite)
+		room_type = "Suite";
+	os << "Chambre : Numero : " << room.number() << ", type : " << room_type << ", prix : " << room.price() << std::endl;
 	return os;
 }
