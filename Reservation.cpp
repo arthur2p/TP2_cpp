@@ -11,6 +11,10 @@ Date Reservation::beginDate() const {
 	return _begin_date;
 }
 
+Date Reservation::endDate() const {
+	return _end_date;
+}
+
 int Reservation::nightNumber() const {
 	return _end_date - _begin_date;
 }
