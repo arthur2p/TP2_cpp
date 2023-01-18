@@ -96,9 +96,11 @@ int main(int argc, char const* argv[]) {
 	} while (option_nb < 0 || option_nb >= option.size());
 	
 
-	//Création réservation
+	//Création réservation dans la liste des réservations
 	reservation_list.push_back({ date, night_number, hotel1, option.at(option_nb).number(), client_list.at(client_id) });
 	
+	// Affichage du prix
+	std::cout << "Le prix total du séjour est de : " << reservation_list.at(0).totalPrice() << " euros" << std::endl;
 
 	return 0;
 }
