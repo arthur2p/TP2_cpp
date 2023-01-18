@@ -78,7 +78,7 @@ void Date::back() {
     }
 }
 
-Date Date::operator+(int days) {
+Date Date::operator+(int days) const {
 	Date d(_year, _month, _day);
 	for (int i = 0; i < days; i++) {
 		d.next();
@@ -86,12 +86,26 @@ Date Date::operator+(int days) {
 	return d;
 }
 
-Date Date::operator-(int days) {
+Date Date::operator-(int days) const {
 	Date d(_year, _month, _day);
 	for (int i = 0; i < days; i++) {
 		d.back();
 	}
 	return d;
+}
+
+int Date::operator-(const Date& date) const {
+    if (date.year() == _year) {
+        return dayOfYear(*this) - dayOfYear(date);
+    }
+    int days = 0;
+    if (_year < date.year()) for (int year = _year; year < date.year(); year++) {
+        days += isYearbissextiles(year)?366:365;
+    }
+    else for (int year = date.year(); year < _year; year++) {
+        days -= isYearbissextiles(year) ? 366 : 365;
+    }
+    return dayOfYear(*this) - dayOfYear(date) - days;
 }
 
 /**

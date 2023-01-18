@@ -22,8 +22,9 @@ public:
 	void updateDay(int day);
 	void next();
 	void back();
-	Date operator+(int days);
-	Date operator-(int days);
+	Date operator+(int days) const;
+	Date operator-(int days) const;
+	int operator-(const Date& date) const;
 private:
 	int _year;
 	int _month;
