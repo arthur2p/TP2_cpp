@@ -36,8 +36,8 @@ int Room::price() const {
 	return _price;
 }
 
-bool Room::reserved(Date begin_date, int night_number) const {
-	for (Reservation reservation : _reservations)
+bool Room::isReserved(Date begin_date, int night_number) const {
+	for (const Reservation& reservation : _reservations)
 		if (begin_date >= reservation.begin_date && begin_date < reservation.begin_date + reservation.night_number ||
 			begin_date + night_number > reservation.begin_date && begin_date + night_number <= reservation.begin_date + reservation.night_number)
 			return true;
@@ -47,14 +47,14 @@ bool Room::reserved(Date begin_date, int night_number) const {
 bool Room::addReservation(Date begin_date, int night_number, int bed_taken) {
 	if (bed_taken < 1 || bed_taken > _bed_amount) throw std::string("Invalid bed amount");
 	if (night_number < 1) throw std::string("Invalid night number");
-	if (reserved(begin_date, night_number)) return false;
+	if (isReserved(begin_date, night_number)) throw std::string("Room already reserved during asked date");
 
 	_reservations.push_back({ begin_date, night_number });
 	return true;
 
 }
 bool Room::removeReservation(Date begin_date) {
-	for (Reservation reservation : _reservations)
+	for (Reservation& reservation : _reservations)
 		if (begin_date == reservation.begin_date)
 			_reservations.erase(_reservations.begin() + (&reservation - &_reservations.at(0)));
 	return false;

@@ -3,7 +3,21 @@
 Reservation::Reservation(Date& begin_date, int night_number, const Hotel& hotel, int room_number, const Client& client) : 
 	_begin_date(begin_date), _end_date(begin_date + night_number), _hotel(hotel), _room_number(room_number), _client(client)
 {
+	try {
+		if (!_hotel.room().at(_room_number).addReservation(_begin_date, night_number, 1)) {
+			throw std::string("Room reservation failed");
+		}
+	}
+	catch (std::string str) {
+		throw std::string("Room reservation failed : " + str);
+	}
 	_total_price = _hotel.room().at(_room_number).price() * night_number;
+
+}
+
+//Destructeur
+Reservation::~Reservation() {
+	_hotel.room().at(_room_number).removeReservation(_begin_date);
 }
 
 //Getters

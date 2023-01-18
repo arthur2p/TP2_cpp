@@ -14,7 +14,7 @@ public:
 	RoomType type() const;
 	int bed_amount() const;
 	int price() const;
-	bool reserved(Date begin_date, int night_number) const;
+	bool isReserved(Date begin_date, int night_number) const;
 	
 	bool addReservation(Date begin_date, int night_number, int bed_taken);
 	bool removeReservation(Date begin_date);

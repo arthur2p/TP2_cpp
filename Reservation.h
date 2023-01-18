@@ -8,6 +8,7 @@ class Reservation
 {
 public:
 	Reservation(Date& begin_date, int night_number, const Hotel& hotel, int room_number, const Client& client);
+	~Reservation();
 	Date beginDate() const;
 	Date endDate() const;
 	int nightNumber() const;
