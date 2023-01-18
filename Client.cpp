@@ -17,14 +17,6 @@ std::string Client::firstname() const {
 	return _firstname;
 }
 
-//Setters
-void Client::updateName(std::string name) {
-	_name = name;
-}
-
-void Client::updateFirstname(std::string firstname) {
-	_firstname = firstname;
-}
 
 //Friend function
 std::ostream& operator<<(std::ostream& os, const Client& client)
