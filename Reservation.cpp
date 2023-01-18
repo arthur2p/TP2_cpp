@@ -1,75 +1,32 @@
 #include "Reservation.h"
 //Constructeur
-Reservation::Reservation(Date& firstDate, int numberNights, Hotel& hotel, int chambreId, Client& client) : 
-    _firstDate(firstDate), _numberOfNights(numberNights), _hotelId(hotel.id()), _chambreId(chambreId), _clientId(client.id()), _totalPrice(calculprice(hotel, chambreId))
+Reservation::Reservation(Date& begin_date, int night_number, const Hotel& hotel, int room_number, const Client& client) : 
+	_begin_date(begin_date), _end_date(begin_date + night_number), _hotel(hotel), _room_number(room_number), _client(client)
 {
-    bool status = isNumberNights(numberNights);
-    assert(status && "Number of nights is not valid");
-    bool statusBis = isDate(firstDate);
-    assert(statusBis && "Date is not valid");
-    bool statusBisBis = isChambreFree(hotel, chambreId);
-    assert(statusBisBis && "Chambre is not free");
+	_total_price = _hotel.room().at(_room_number).price() * night_number;
 }
 
 //Getters
-Date Reservation::firstDate() const {
-    return _firstDate;
+Date Reservation::beginDate() const {
+	return _begin_date;
 }
 
-int Reservation::numberOfNights() const {
-    return _numberOfNights;
+int Reservation::nightNumber() const {
+	return _end_date - _begin_date;
 }
 
-int Reservation::hotelId() const {
-    return _hotelId;
+const Hotel& Reservation::hotel() const {
+	return _hotel;
 }
 
-int Reservation::chambreId() const {
-    return _chambreId;
+int Reservation::roomNumber() const {
+    return _room_number;
 }
 
-int Reservation::clientId() const {
-    return _clientId;
+const Client& Reservation::client() const {
+	return _client;
 }
 
-int Reservation::totalprice() const {
-    return _totalPrice;
-}
-
-//Setters
-void Reservation::updateDate(int day, int month, int year) {
-    _firstDate.updateDay(day);
-    _firstDate.updateMonth(month);
-    _firstDate.updateYear(year);
-}
-
-void Reservation::updateNumberOfNights(int newNumber) {
-    _numberOfNights = newNumber;
-}
-
-//Calcul du prix total du séjour
-int Reservation::calculprice(Hotel hotel, int chambreId) {
-    return hotel.room().at(chambreId-1).price() * _numberOfNights;
-}
-
-//Helper functions
-bool isNumberNights(int number) {
-    if (number > 0)
-        return true;
-    else
-        return false;
-}
-
-bool isDate(Date date) {
-    if (date.year() >= 2023)
-        return true;
-    else
-        return false;
-}
-
-bool isChambreFree(Hotel hotel, int chambreId) {
-    if (hotel.room().at(chambreId-1).reserved())
-        return false;
-    else
-        return true;
+int Reservation::totalPrice() const {
+	return _total_price;
 }

@@ -1,13 +1,3 @@
-/**
-  * @File: main.cpp
-  * @Author: d0m <dginhac@u-bourgogne.fr>
-  * @Created on : 2022-10-03 10:14:42
-  * @Last Modified time: 2022-10-03 15:16:54
-  *
-  * @Description: Final class
-  */
-
-
 #include "date.h"
 #include "Client.h"
 #include "Hotel.h"
@@ -16,24 +6,6 @@
 #include <iostream>
 
 int main(int argc, char const* argv[]) {
-	/*Hotel a(1, "Ibis", "Dijon");
-	std::cout << a.id() << " " << a.name() << " " << a.city() << std::endl;
-	Chambre room1(1, "Simple", 50);
-	a.addChambre(room1);
-	Chambre room2 (2, "Double", 100);
-	a.addChambre(room2);
-	a.DisplayAllChambre();
-	Hotel b(2, "Motel", "Lyon");
-	b.DisplayAllChambre();
-	a.removeChambre(1);
-	a.DisplayAllChambre();
-	Client client(1, "Arthure", "PATAILLE");
-	client.updateFirstname("Arthur");
-	std::cout << client.firstname() << " " << client.id() << std::endl;
-	Date date(2023, 1, 11);
-	Reservation reservation(date, 5, a, 1, client);
-	std::cout << reservation.clientId() << " " << reservation.hotelId() << " " << reservation.totalprice() << std::endl;*/
-
 	//Ajout de d'un hotel avec 10 chambres
 	std::vector<Room> chambreHotel1;
 	for (int i = 1; i < 4; i++) {
@@ -62,7 +34,4 @@ int main(int argc, char const* argv[]) {
 		std::cout << clientHotel1.at(i);
 	}
 
-
-
-	return 0;
 }

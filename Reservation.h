@@ -7,25 +7,19 @@
 class Reservation
 {
 public:
-	Reservation(Date& firstDate, int numberNights, Hotel& hotel, int chambreId, Client& client);
-	Date firstDate() const;
-	int numberOfNights() const;
-	int hotelId() const;
-	int chambreId() const;
-	int clientId() const;
-	int totalprice() const;
-	void updateDate(int day, int month, int year);
-	void updateNumberOfNights(int newNumber);
-	int calculprice(Hotel hotel, int chambreId);
+	Reservation(Date& begin_date, int night_number, const Hotel& hotel, int room_number, const Client& client);
+	Date beginDate() const;
+	Date endDate() const;
+	int nightNumber() const;
+	const Hotel& hotel() const;
+	int roomNumber() const;
+	const Client& client() const;
+	int totalPrice() const;
 private:
-	Date _firstDate;
-	int _numberOfNights;
-	int _hotelId;
-	int _chambreId;
-	int _clientId;
-	int _totalPrice;
+	Date _begin_date;
+	Date _end_date;
+	const Hotel& _hotel;
+	int _room_number;
+	const Client& _client;
+	int _total_price;
 };
-
-bool isNumberNights(int number);
-bool isDate(Date date);
-bool isChambreFree(Hotel hotel, int ChambreId);
