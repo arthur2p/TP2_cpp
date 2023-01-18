@@ -78,6 +78,22 @@ void Date::back() {
     }
 }
 
+Date Date::operator+(int days) {
+	Date d(_year, _month, _day);
+	for (int i = 0; i < days; i++) {
+		d.next();
+	}
+	return d;
+}
+
+Date Date::operator-(int days) {
+	Date d(_year, _month, _day);
+	for (int i = 0; i < days; i++) {
+		d.back();
+	}
+	return d;
+}
+
 /**
  *
  * Helper functions

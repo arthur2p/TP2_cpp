@@ -22,6 +22,8 @@ public:
 	void updateDay(int day);
 	void next();
 	void back();
+	Date operator+(int days);
+	Date operator-(int days);
 private:
 	int _year;
 	int _month;
