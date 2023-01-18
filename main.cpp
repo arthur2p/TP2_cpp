@@ -23,15 +23,35 @@ int main(int argc, char const* argv[]) {
 	std::cout << hotel1;
 
 	//Création de clients
-	std::vector<Client> clientHotel1;
-	clientHotel1.push_back(Client(1, "PATAILLE", "Arthur"));
-	clientHotel1.push_back(Client(2, "BRAUN", "Gwendal"));
-	clientHotel1.push_back(Client(3, "FREUD", "Sigmond"));
-	clientHotel1.push_back(Client(4, "EULER", "Leonard"));
-	clientHotel1.push_back(Client(5, "STIVELL", "Alan"));
+	std::vector<Client> client_list;
+	client_list.push_back(Client(1, "PATAILLE", "Arthur"));
+	client_list.push_back(Client(2, "BRAUN", "Gwendal"));
+	client_list.push_back(Client(3, "FREUD", "Sigmond"));
+	client_list.push_back(Client(4, "EULER", "Leonard"));
+	client_list.push_back(Client(5, "STIVELL", "Alan"));
 
-	for (int i = 0; i < clientHotel1.size(); i++) {
-		std::cout << clientHotel1.at(i);
+	for (Client client : client_list) std::cout << client;
+	
+
+	std::vector<Reservation> reservation_list;
+
+
+	std::cout << "Entrer le nom d'un client :" << std::endl;
+	std::string client_name, client_firstname;
+	std::cin >> client_name >> client_firstname;
+	bool client_in_list = false;
+	for (Client client : client_list) {
+		if (client.name() == client_name && client.firstname() == client_firstname) {
+			std::cout << client << std::endl;
+			client_in_list = true;
+			break;
+		}
 	}
+	if (!client_in_list)
+	{
+		client_list.push_back(Client(client_list.size() + 1, client_name, client_firstname));
+	}
+
+	for (Client client : client_list) std::cout << client;
 
 }
